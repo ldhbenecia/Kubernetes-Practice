@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: story-deployment
+spec:
+  replicas: 1
+  selector: # 스토리 값에 있는 파드 찾기
+    matchLabels:
+      app: story # 템플릿에 있는 파드 선택
+  template:
+    metadata: # 포트를 선택할 수 있는 레이블을 추가하는 메타데이터
+      labels:
+        app: story # 컨테이너 이름과 동일하지만 다른 값 사용 가능
+    spec:
+      containers:
+        - name: story
+          image: ldhbenecia/kub-data-demo
